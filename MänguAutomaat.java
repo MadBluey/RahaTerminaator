@@ -1,6 +1,9 @@
-/**
- * Created by Kaspar on 07/03/16.
+/*
+ * Created by OveLiis on 07/03/2016.
  */
+
+//Töö autorid on Ove Liis Mahhov ja Karl Kaspar Haavel.
+
 
 import java.util.*;
 
@@ -50,7 +53,7 @@ public class MänguAutomaat {
     public ArrayList<String> sümboliGeneratsioon(double võimalus) {
         ArrayList<Integer> numbrid = new ArrayList<Integer>(); //Täisarvude array.
         ArrayList<String> sümbolid = new ArrayList<String>(); //Sümbolite array.
-
+        int kordaja = 1;  // Arv, millega korrutakse panus, kui võidetakse. - et vältida errorit on see üks.
         for (int i = 0, k = 3; i < k; i++) { //Genereerib arraylisti kolm suvalist numbrit vahemikus 0-9ni.
             Random slot = new Random();
             int Number = slot.nextInt(10);
@@ -83,33 +86,43 @@ public class MänguAutomaat {
 
                 case 0:
                     sümbolid.add(i, "A");
+                    kordaja = 2;
                     break;
                 case 1:
                     sümbolid.add(i, "B");
+                    kordaja = 3;
                     break;
                 case 2:
                     sümbolid.add(i, "C");
+                    kordaja = 4;
                     break;
                 case 3:
                     sümbolid.add(i, "D");
+                    kordaja = 5;
                     break;
                 case 4:
                     sümbolid.add(i, "E");
+                    kordaja = 6;
                     break;
                 case 5:
                     sümbolid.add(i, "F");
+                    kordaja = 7;
                     break;
                 case 6:
                     sümbolid.add(i, "G");
+                    kordaja = 8;
                     break;
                 case 7:
                     sümbolid.add(i, "H");
+                    kordaja = 9;
                     break;
                 case 8:
                     sümbolid.add(i, "I");
+                    kordaja = 10;
                     break;
                 case 9:
                     sümbolid.add(i, "J");
+                    kordaja = 11;
                     break;
             }
         }
@@ -120,69 +133,14 @@ public class MänguAutomaat {
 
         //Siit saad Ove neid väljamakseid kontrollida -> kuidagi kavalalt saab ka, aga peale vaadates tundub ainult if-else.
 
-        if (sümbolid.get(0).equals("A") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
+        if (sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
             /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
             tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*1.5 + "eurot.");
-            setRaha(getRaha() + getPanus() * 1.5);
-        }
-        else if (sümbolid.get(0).equals("B") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*2 + "eurot.");
-            setRaha(getRaha() + getPanus() * 2);
-        }
-        else if (sümbolid.get(0).equals("C") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*4 + "eurot.");
-            setRaha(getRaha() + getPanus() * 4);
-        }
-        else if (sümbolid.get(0).equals("D") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*6 + "eurot.");
-            setRaha(getRaha() + getPanus() * 6);
-        }
-        else if (sümbolid.get(0).equals("E") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*8 + "eurot.");
-            setRaha(getRaha() + getPanus() * 8);
-        }
-        else if (sümbolid.get(0).equals("F") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*10 + "eurot.");
-            setRaha(getRaha() + getPanus() * 10);
-        }
-        else if (sümbolid.get(0).equals("G") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*12 + "eurot.");
-            setRaha(getRaha() + getPanus() * 12);
-        }
-        else if (sümbolid.get(0).equals("H") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*14 + "eurot.");
-            setRaha(getRaha() + getPanus() * 14);
-        }
-        else if (sümbolid.get(0).equals("I") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*15 + "eurot.");
-            setRaha(getRaha() + getPanus() * 15);
-        }
-        else if (sümbolid.get(0).equals("J") && sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
-            tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*100 + "eurot.");
-            setRaha(getRaha() + getPanus() * 100);
-        }
+            System.out.println("Võitsite praegu " + getPanus()*kordaja + " eurot.");
+            setRaha(getRaha() + getPanus() * kordaja);
 
-        //kaotuse korral lahutab mängu maksumuse panustatud rahast
-        else setRaha(getRaha() - getPanus());
+            //kaotuse korral lahutab mängu maksumuse panustatud rahast
+        } else setRaha(getRaha() - getPanus());
 
         return sümbolid;
     }

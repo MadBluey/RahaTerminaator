@@ -1,6 +1,10 @@
-/**
+/*
  * Created by Kaspar on 07/03/16.
  */
+
+
+//Töö autorid on Ove Liis Mahhov ja Karl Kaspar Haavel.
+
 
 import java.util.*;
 
