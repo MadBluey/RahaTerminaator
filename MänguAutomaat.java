@@ -5,13 +5,19 @@
 //Töö autorid on Ove Liis Mahhov ja Karl Kaspar Haavel.
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
-//Ainuke asi, mida saab kontrollida väliselt on raha, panus ja võiduvõimalus (Testimiseks)
+
 public class MänguAutomaat {
     private double raha; //summa, mis kasutaja on panustanud täisarvudena
     private double panus; //palju maksab üks mäng/kangitõmme
     private double võimalus; //Võiduvõimaluse kontrollimine.
+
+    public MänguAutomaat(double raha, double panus) {
+        setRaha(raha);
+        setPanus(panus);
+    }
 
     //Getterid ja Setterid
     public double getRaha() {
@@ -27,22 +33,17 @@ public class MänguAutomaat {
     }
 
     public void setPanus(double panus) {
-        this.panus = ((panus > 0) ? panus : 0);
+        this.panus = ((panus > 0 && getRaha() >= panus) ? panus : 0); //Panus ei saa olla suurem kui raha on ja panus ei saa olla 0.
     }
 
     public double getVõimalus() {
         return võimalus;
     }
 
-    public void setVõimalus(double võimalus) {
-        this.võimalus = ((võimalus >= 0.01 && võimalus <= 1) ? võimalus : 0.01); //Võimalus, mis kontrolllib tõenäosust saada samad numbrid.
-    }
-
     //Konstruktor.
 
-    public MänguAutomaat(double raha, double panus) {
-        setRaha(raha);
-        setPanus(panus);
+    public void setVõimalus(double võimalus) {
+        this.võimalus = ((võimalus >= 0.01 && võimalus <= 1) ? võimalus : 0.01); //Võimalus, mis kontrolllib tõenäosust saada samad numbrid.
     }
 
     //Meetodid
@@ -67,15 +68,15 @@ public class MänguAutomaat {
          Esimene element 100%, teine element 10%, kolmas element sama 10% --> 1%. (Mdea mu loogika ütleb nii)
 
          */
-
+        //Paremat meetodit vaja.
         //Käsk toimib ainult siis kui kõik kolm numbrit ei ole võrdsed.
-        if (numbrid.get(0).equals(numbrid.get(1)) != numbrid.get(0).equals(numbrid.get(2))) {
+        if (!(numbrid.get(0).equals(numbrid.get(1)) && numbrid.get(0).equals(numbrid.get(2)))) {
             double võimalus2 = Math.sqrt(võimalus);
 
-            if (võimalus2 > Math.random()) { //Kui suvaline arv 0-1 vahel on väiksem ühe elemendi võimalusest muutub teine element samaks esimesega.
+            if (võimalus2 >= Math.random()) { //Kui suvaline arv 0-1 vahel on väiksem ühe elemendi võimalusest muutub teine element samaks esimesega.
                 numbrid.set(1, numbrid.get(0));
             }
-            if (võimalus2 > Math.random()) { //Sama asi kolmanda elemendiga.
+            if (võimalus2 >= Math.random()) { //Sama asi kolmanda elemendiga.
                 numbrid.set(2, numbrid.get(0));
             }
         }
@@ -129,14 +130,12 @@ public class MänguAutomaat {
         //Prindib kasutaja jaoks sümbolid välja.
         System.out.println(sümbolid);
 
-        //Kui kasutaja võidab, siis ta saab tagasi raha-panus+võidusumma(10 kordne panus)
-
-        //Siit saad Ove neid väljamakseid kontrollida -> kuidagi kavalalt saab ka, aga peale vaadates tundub ainult if-else.
+        //Kui kasutaja võidab, siis ta saab tagasi raha-panus+võidusumma(olenevalt kordajast)
 
         if (sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
-            /*kui inimene võidab, korrutab panustatud raha kümnega võidusumma lisab olemasolevale rahale,
+            /*kui inimene võidab, korrutab panustatud raha kordajaga võidusumma lisab olemasolevale rahale,
             tagastab raha summa kokku*/
-            System.out.println("Võitsite praegu " + getPanus()*kordaja + " eurot.");
+            System.out.println("Võitsite praegu " + getPanus() * kordaja + " eurot.");
             setRaha(getRaha() + getPanus() * kordaja);
 
             //kaotuse korral lahutab mängu maksumuse panustatud rahast
