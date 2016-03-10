@@ -55,7 +55,7 @@ public class Main {
                 Scanner input5 = new Scanner(System.in);
                 if (input5.nextDouble() == 1) {
                     Scanner input6 = new Scanner(System.in);
-                    System.out.println("Sisestage palun teie poolt soovitud võiduvõimalus. Default on 90%. ");
+                    System.out.println("Sisestage palun teie poolt soovitud võiduvõimalus. Default on 13%. ");
                     a.setVõimalus(input6.nextDouble() / 100.0);
                     System.out.println("Teie soovitud võiduvõimalus on: " + a.getVõimalus() * 100.0);
                 }
