@@ -1,21 +1,19 @@
-import javax.xml.crypto.Data;
+
 import java.io.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class LisaRaha {
 
-    String omanikunimi;
-    LocalDate kuupäev;
+    private String omanikunimi;
+    private LocalDate kuupäev;
 
-    long krediitkaardiNumber; //Pikkuse kontroll, numbri kontroll
-    int cvv; //Pikkuse kontroll, numbri kontroll
-    double lisaRaha; //Number
+    private long krediitkaardiNumber; //Pikkuse kontroll, numbri kontroll
+    private int cvv; //Pikkuse kontroll, numbri kontroll
+    private double lisaRaha; //Rahasumma, mis lisatakse
 
-    MänguAutomaat mängja; //Et saaks siduda Mänguautomaati lisaRahaga
-    String sõnum;
+    private MänguAutomaat mängja; //Et saaks siduda Mänguautomaati lisaRahaga
+    private String sõnum; //Veasõnumid - igaks juhuks.
 
 
 
@@ -41,7 +39,7 @@ public class LisaRaha {
 
         String[] asdo = kuupäev2.split(" ");
 
-        switch (asdo[1]){
+        switch (asdo[1]){ //Kui sisestatakse kuu nimi, siis muudetakse numbriks. - See on ülejääk eelmisest GUIst.
 
                 case "jaanuar":
                     asdo[1] = "01";
@@ -82,14 +80,15 @@ public class LisaRaha {
                 }
 
 
-        this.kuupäev = LocalDate.parse(asdo[0]+"-"+asdo[1]+"-01");
-        this.krediitkaardiNumber = ((krediitKaardiKontroll(krediitkaardiNumber) ? krediitkaardiNumber : 0L));
-        this.omanikunimi = omanikunimi;
-        this.cvv = ((cvvKontroll(cvv) ? cvv : 0));
+        this.kuupäev = LocalDate.parse(asdo[0]+"-"+asdo[1]+"-01"); //Muudetakse String localDate'iks
+        this.krediitkaardiNumber = ((krediitKaardiKontroll(krediitkaardiNumber) ? krediitkaardiNumber : 0L)); //Kui krediitkaart ei vasta nõudele on ta 0.
+        this.omanikunimi = omanikunimi; //Omaniku nimi
+        this.cvv = ((cvvKontroll(cvv) ? cvv : 0)); //CVV kontroll, kui see ei läbi on see 0.
         setLisaRaha(lisaRaha);
 
         this.mängja = mängja;
 
+        //Kui ei vasta nõuetele, siis viskab erindeid.
         if (krediitkaardiNumber == 0L) {sõnum = "Sisestati vale krediitkaardinumber."; throw new ValeKrediitKaardiInfo(sõnum);}
         else if (omanikunimi.length()==0) {sõnum = "Sisestage palun nimi."; throw new ValeKrediitKaardiInfo(sõnum);}
         else if (cvv == 0) {sõnum = "Sisestati vale cvv."; throw new ValeKrediitKaardiInfo(sõnum);}
@@ -104,17 +103,17 @@ public class LisaRaha {
 
     public boolean kuupäevKehtib(LocalDate kuupäev) {
         return kuupäev.isAfter(LocalDate.now());
-    }
+    } //Kuupäeva kehtivuse kontroll - kuupäev peab olema hilisem tänasest päevast.
 
     public boolean krediitKaardiKontroll(long krediitkaardiNumber){
-        return String.valueOf(krediitkaardiNumber).length() == 16;
+        return String.valueOf(krediitkaardiNumber).length() == 16; //Krediitkaardil on 16 numbrit :D
     }
 
     public boolean cvvKontroll(int cvv){
         return String.valueOf(cvv).length() == 3;
-    }
+    } //CVV on 3 numbriline.
 
-    public void failiKirjutamine() throws IOException {
+    public void failiKirjutamine() throws IOException { //KrediitkaardiInfo faili kirjutamine.
         File salvestatudfail = new File("salainfo.txt");
         if (!salvestatudfail.exists()) {
             salvestatudfail.createNewFile();}

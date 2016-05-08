@@ -19,19 +19,24 @@ import java.util.logging.Logger;
  * Created by OveLiis on 26/04/2016.
  */
 public class Peaklass extends Application {
-        static MänguAutomaat a;
-    static LisaRaha b;
+
+
+    private static MänguAutomaat a;
+    private static LisaRaha b;
 
     public static MänguAutomaat getA() {
         return a;
-    }
+    } //Get klass, et saaks läbi peaklassi kutsuda mänguautomaadi meetodeid.
 
 
     public static void main(String[] args) throws IOException {
-            a = new MänguAutomaat(0.0);
+
+        //Luuakse algseisud.
+        a = new MänguAutomaat(0.0);
         a.setPanus(5); //Min panus.
         b = new LisaRaha(1234567890123456L,"Algbilanss", 100, "9999 jaanuar", 500, a);
 
+        //GUI algus.
             Application.launch(Peaklass.class, (java.lang.String[])null);
         }
 

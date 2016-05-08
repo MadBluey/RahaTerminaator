@@ -5,9 +5,9 @@ import java.util.Random;
 public class MänguAutomaat {
     private double raha; //summa, mis kasutaja on panustanud täisarvudena
     private double võimalus; //Võiduvõimaluse kontrollimine.
-    private int panus;
-    private ArrayList<String> sümbolid;
-    private String sõnum;
+    private int panus; //Kui palju panustatakse
+    private ArrayList<String> sümbolid; //Sümbolid, mis genereeritakse
+    private String sõnum; //VeaSõnum
 
     public String getSõnum() {
         return sõnum;
@@ -19,10 +19,6 @@ public class MänguAutomaat {
 
     public ArrayList<String> getSümbolid() {
         return sümbolid;
-    }
-
-    public MänguAutomaat(int panus) {
-        setPanus(panus);
     }
 
     public MänguAutomaat(double raha) {
@@ -97,7 +93,7 @@ public class MänguAutomaat {
                 }
             }
 
-            //For-tsükkel, mis muudab arvud sümboliteks. Praegu on tähed. NB võitmise kontrollist on läbi käidud.
+            //For-tsükkel, mis muudab arvud sümboliteks. Piltide pealkirjad. NB võitmise kontrollist on läbi käidud.
             for (int i = 0, k = 3; i < k; i++) {
                 switch (numbrid.get(i)) {
 

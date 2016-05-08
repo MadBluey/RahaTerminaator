@@ -55,7 +55,7 @@ public class lisarahaKontroll
 
         // initialize your logic here: all @FXML variables will have been injected
         try{failistLugemine();} catch(Exception e){ KKSõnum.setText("Toimus viga andmete sisse lugemisel, vabandame.");}
-        lisarahanupp.setOnAction(event -> {
+        lisarahanupp.setOnAction(event -> { //Kui vajutatakse nupule, luuakse uus LisaRaha.
                     try {
                         a = new LisaRaha(Long.parseLong(krediit1.getText()+krediit2.getText()+krediit3.getText()+krediit4.getText()),
                                 omanikunimi.getText(),
@@ -63,13 +63,11 @@ public class lisarahaKontroll
                                 aegumisAasta.getText() + " " + aegumisKuu.getText(),
                                 Double.parseDouble(rahakogus.getText()),
                                 Peaklass.getA());
-                        KKSõnum.setText(a.getSõnum());
-                        olemasraha.setText(String.valueOf(Peaklass.getA().getRaha()));
+                        KKSõnum.setText(a.getSõnum()); //Sõnum LisaRahast.
+                        olemasraha.setText(String.valueOf(Peaklass.getA().getRaha())); //Raha olek.
                     } catch (IOException e) {
                         KKSõnum.setText("Toimus viga andmete sisestusel. Palun proovige uuesti.");
                     }
-
-
         });
     }
 
@@ -83,6 +81,8 @@ public class lisarahaKontroll
 
         stage.close();
     }
+
+    //Meetod failist lugemiseks - loeb andmed, mis on failis ning paneb need vastavatesse tekstiväljadesse. ((Kodutöö tingimus)).
     public void failistLugemine() throws Exception {
         try(DataInputStream dos = new DataInputStream(new FileInputStream(new File("salainfo.txt")))){
             String Nimi = dos.readUTF();

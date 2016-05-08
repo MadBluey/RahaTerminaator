@@ -12,8 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class avaKontroll
-        implements Initializable {
+public class avaKontroll implements Initializable {
 
     @FXML //  fx:id="myButton"
     private Button exitnupp; // Value injected by FXMLLoader
@@ -23,8 +22,6 @@ public class avaKontroll
     private Button lisarahanupp;
     @FXML
     private Label kasutajalabel;
-    @FXML
-
 
 
 
