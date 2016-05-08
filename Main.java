@@ -14,19 +14,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner input1 = new Scanner(System.in);
         System.out.println("Sisestage oma rahasumma mängimiseks: ");  //Küsib rahasummat, millega mängja alustab.
-        double raha = input1.nextDouble();
+        double raha = input1.nextInt();
 
         Scanner input2 = new Scanner(System.in);
         System.out.println("Palun sisestage oma soovitud panus: "); //Küsib kasutajalt soovitud panuse.
-        double panus = input2.nextDouble();
+        int panus = input2.nextInt();
 
-        MänguAutomaat a = new MänguAutomaat(raha, panus); //--> MänguAutomaat.
-
-        a.setVõimalus(0.13); //Võiduvõimalus on praegu 13%. Väljamaksed on ülisuured :D. --> Hit rate
+        MänguAutomaat a = new MänguAutomaat(raha); //--> MänguAutomaat.
 
         while (true) { //Tsükkel mängimiseks, mis kestab kuni raha otsas või kasutaja soovib lõpetada.
 
-            a.sümboliGeneratsioon(a.getVõimalus()); //--> Mänguautomaat.
+            a.sümboliGeneratsioon(); //--> Mänguautomaat.
             System.out.println("Raha on " + Math.round(a.getRaha() * 100.0) / 100.0); //Tagastab palju raha on.
 
             if (a.getRaha() == 0) {
@@ -45,7 +43,7 @@ public class Main {
 
             Scanner input4 = new Scanner(System.in);
             System.out.println("Palun sisestage oma soovitud panus"); //Küsib panuse uuesti.
-            double panus2 = input4.nextDouble();
+            int panus2 = input4.nextInt();
             a.setPanus(panus2);
 
 
@@ -55,7 +53,7 @@ public class Main {
                 Scanner input5 = new Scanner(System.in);
                 if (input5.nextDouble() == 1) {
                     Scanner input6 = new Scanner(System.in);
-                    System.out.println("Sisestage palun teie poolt soovitud võiduvõimalus. Default on 13%. ");
+                    System.out.println("Sisestage palun teie poolt soovitud võiduvõimalus. Default on 90%. ");
                     a.setVõimalus(input6.nextDouble() / 100.0);
                     System.out.println("Teie soovitud võiduvõimalus on: " + a.getVõimalus() * 100.0);
                 }
