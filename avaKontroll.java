@@ -24,15 +24,13 @@ public class avaKontroll
     @FXML
     private Label kasutajalabel;
     @FXML
-    private Label rahalabel;
-    @FXML
+
 
 
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         kasutajalabel.setText("Mängja 1");
-        rahalabel.setText("Mängimiseks saate raha lisada menüüst 'Lisa Raha', mängimiseks vajuta 'Play'.");
 
         assert exitnupp != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
 
