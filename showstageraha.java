@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 /**
  * Created by OveLiis on 26/04/2016.
  */
-public class showstageraha{
-    public static void showStage(){
+public class showstageraha {
+    public static void showStage() {
         try {
             Stage newStage = new Stage();
             AnchorPane page = (AnchorPane) FXMLLoader.load(Peaklass.class.getResource("lisaraha.fxml"));
@@ -23,4 +23,5 @@ public class showstageraha{
         } catch (Exception ex) {
             Logger.getLogger(Peaklass.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }}
+    }
+}

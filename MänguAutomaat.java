@@ -9,20 +9,20 @@ public class MänguAutomaat {
     private ArrayList<String> sümbolid; //Sümbolid, mis genereeritakse
     private String sõnum; //VeaSõnum
 
+    public MänguAutomaat(double raha) {
+        setRaha(raha);
+    }
+
     public String getSõnum() {
         return sõnum;
     }
 
-    public String getSõnumA(){
+    public String getSõnumA() {
         return "Teil ei ole raha lisage seda palun menüüst 'Lisa Raha'! ";
     }
 
     public ArrayList<String> getSümbolid() {
         return sümbolid;
-    }
-
-    public MänguAutomaat(double raha) {
-        setRaha(raha);
     }
 
     //Getterid ja Setterid
@@ -34,7 +34,8 @@ public class MänguAutomaat {
         this.raha = ((raha > 0) ? raha : 0);
     }
 
-    public int getPanus() {return panus;
+    public int getPanus() {
+        return panus;
     }
 
     public void setPanus(int panus) {
@@ -43,8 +44,8 @@ public class MänguAutomaat {
         else if (panus == 10) setVõimalus(0.10);
         else if (panus == 20) setVõimalus(0.2);
         else if (panus == 50) setVõimalus(0.3);
-        else if (panus == 100) setVõimalus(0.4);
-        else if (panus == 200) setVõimalus(0.5);
+        else if (panus == 100) setVõimalus(0.34);
+        else if (panus == 200) setVõimalus(0.35);
     }
 
     public double getVõimalus() {
@@ -63,15 +64,16 @@ public class MänguAutomaat {
 
     //Võib vist Voidiks ka teha selle.
     public ArrayList<String> sümboliGeneratsioon() {
+        if(getRaha()<=getPanus()) sõnum = "Teil pole piisavalt raha";
 
-            ArrayList<Integer> numbrid = new ArrayList<Integer>(); //Täisarvude array.
-            this.sümbolid = new ArrayList<>(); //Sümbolite array. TÜHI!
-            double kaal = 1;  // Arv, millega korrutakse panus, kui võidetakse. - et vältida errorit on see üks.
-            for (int i = 0, k = 3; i < k; i++) { //Genereerib arraylisti kolm suvalist numbrit vahemikus 0-9ni.
-                Random slot = new Random();
-                int Number = slot.nextInt(10);
-                numbrid.add(Number);
-            }
+        ArrayList<Integer> numbrid = new ArrayList<Integer>(); //Täisarvude array.
+        this.sümbolid = new ArrayList<>(); //Sümbolite array. TÜHI!
+        double kaal = 1;  // Arv, millega korrutakse panus, kui võidetakse. - et vältida errorit on see üks.
+        for (int i = 0, k = 3; i < k; i++) { //Genereerib arraylisti kolm suvalist numbrit vahemikus 0-9ni.
+            Random slot = new Random();
+            int Number = slot.nextInt(10);
+            numbrid.add(Number);
+        }
 
         /*
         Kasutaja võitmise kontrollimine -> Esimese arv on suvaline. Teise ja kolmanda arvu võimalus muuta samaks on ruutjuur
@@ -80,84 +82,83 @@ public class MänguAutomaat {
          Esimene element 100%, teine element 10%, kolmas element sama 10% --> 1%. (Mdea mu loogika ütleb nii)
 
          */
-            //Paremat meetodit vaja.
-            //Käsk toimib ainult siis kui kõik kolm numbrit ei ole võrdsed.
-            if (!(numbrid.get(0).equals(numbrid.get(1)) && numbrid.get(0).equals(numbrid.get(2)))) {
-                double võimalus2 = Math.sqrt(getVõimalus());
+        //Paremat meetodit vaja.
+        //Käsk toimib ainult siis kui kõik kolm numbrit ei ole võrdsed.
+        if (!(numbrid.get(0).equals(numbrid.get(1)) && numbrid.get(0).equals(numbrid.get(2)))) {
+            double võimalus2 = Math.sqrt(getVõimalus());
 
-                if (võimalus2 >= Math.random()) { //Kui suvaline arv 0-1 vahel on väiksem ühe elemendi võimalusest muutub teine element samaks esimesega.
-                    numbrid.set(1, numbrid.get(0));
-                }
-                if (võimalus2 >= Math.random()) { //Sama asi kolmanda elemendiga.
-                    numbrid.set(2, numbrid.get(0));
-                }
+            if (võimalus2 >= Math.random()) { //Kui suvaline arv 0-1 vahel on väiksem ühe elemendi võimalusest muutub teine element samaks esimesega.
+                numbrid.set(1, numbrid.get(0));
             }
-
-            //For-tsükkel, mis muudab arvud sümboliteks. Piltide pealkirjad. NB võitmise kontrollist on läbi käidud.
-            for (int i = 0, k = 3; i < k; i++) {
-                switch (numbrid.get(i)) {
-
-                    case 0:
-                        sümbolid.add(i, "pilt0.jpg");
-                        kaal = 0.5;
-                        break;
-                    case 1:
-                        sümbolid.add(i, "pilt1.jpeg");
-                        kaal = 0.7;
-                        break;
-                    case 2:
-                        sümbolid.add(i, "pilt2.png");
-                        kaal = 0.9;
-                        break;
-                    case 3:
-                        sümbolid.add(i, "pilt3.jpg");
-                        kaal = 1.3;
-                        break;
-                    case 4:
-                        sümbolid.add(i, "pilt4.jpg");
-                        kaal = 1.5;
-                        break;
-                    case 5:
-                        sümbolid.add(i, "pilt5.jpg");
-                        kaal = 1.7;
-                        break;
-                    case 6:
-                        sümbolid.add(i, "pilt6.jpg");
-                        kaal = 1.9;
-                        break;
-                    case 7:
-                        sümbolid.add(i, "pilt7.png");
-                        kaal = 3;
-                        break;
-                    case 8:
-                        sümbolid.add(i, "pilt8.jpg");
-                        kaal = 5;
-                        break;
-                    case 9:
-                        sümbolid.add(i, "pilt9.jpg");
-                        kaal = 10;
-                        break;
-                }
+            if (võimalus2 >= Math.random()) { //Sama asi kolmanda elemendiga.
+                numbrid.set(2, numbrid.get(0));
             }
-            //Prindib kasutaja jaoks sümbolid välja.
+        }
 
-            //Kui kasutaja võidab, siis ta saab tagasi raha-panus+võidusumma(olenevalt kordajast)
+        //For-tsükkel, mis muudab arvud sümboliteks. Piltide pealkirjad. NB võitmise kontrollist on läbi käidud.
+        for (int i = 0, k = 3; i < k; i++) {
+            switch (numbrid.get(i)) {
+
+                case 0:
+                    sümbolid.add(i, "pilt0.jpg");
+                    kaal = 0.5;
+                    break;
+                case 1:
+                    sümbolid.add(i, "pilt1.jpeg");
+                    kaal = 0.7;
+                    break;
+                case 2:
+                    sümbolid.add(i, "pilt2.png");
+                    kaal = 0.9;
+                    break;
+                case 3:
+                    sümbolid.add(i, "pilt3.jpg");
+                    kaal = 1.3;
+                    break;
+                case 4:
+                    sümbolid.add(i, "pilt4.jpg");
+                    kaal = 1.5;
+                    break;
+                case 5:
+                    sümbolid.add(i, "pilt5.jpg");
+                    kaal = 1.7;
+                    break;
+                case 6:
+                    sümbolid.add(i, "pilt6.jpg");
+                    kaal = 1.9;
+                    break;
+                case 7:
+                    sümbolid.add(i, "pilt7.png");
+                    kaal = 3;
+                    break;
+                case 8:
+                    sümbolid.add(i, "pilt8.jpg");
+                    kaal = 5;
+                    break;
+                case 9:
+                    sümbolid.add(i, "pilt9.jpg");
+                    kaal = 10;
+                    break;
+            }
+        }
+        //Prindib kasutaja jaoks sümbolid välja.
+
+        //Kui kasutaja võidab, siis ta saab tagasi raha-panus+võidusumma(olenevalt kordajast)
 
 
-
-            if (sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
+        if (sümbolid.get(0).equals(sümbolid.get(1)) && sümbolid.get(1).equals(sümbolid.get(2))) {
             /*kui inimene võidab, korrutab panustatud raha kordajaga võidusumma lisab olemasolevale rahale,
             tagastab raha summa kokku*/
-                sõnum = "Võitsite praegu " + getPanus() * kaal + " eurot.";
-                setRaha(getRaha() + getPanus() * kaal - getPanus());
+            sõnum = "Võitsite praegu " + getPanus() * kaal + " eurot.";
+            setRaha(getRaha() + getPanus() * kaal - getPanus());
 
-                //kaotuse korral lahutab mängu maksumuse panustatud rahast
-            } else {
-                sõnum = "Kaotasite praegu " + getPanus() + " eurot.";
-                setRaha(getRaha() - getPanus());
-            }
+            //kaotuse korral lahutab mängu maksumuse panustatud rahast
+        } else {
+            sõnum = "Kaotasite praegu " + getPanus() + " eurot.";
+            setRaha(getRaha() - getPanus());
+        }
 
-         return sümbolid;
+        return sümbolid;
 
     }
 }

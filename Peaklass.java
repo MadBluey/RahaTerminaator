@@ -37,27 +37,27 @@ public class Peaklass extends Application {
         b = new LisaRaha(1234567890123456L,"Algbilanss", 100, "9999 jaanuar", 500, a);
 
         //GUI algus.
-            Application.launch(Peaklass.class, (java.lang.String[])null);
-        }
-
-        @Override
-        public void start(Stage primaryStage) {
-            try {
-                AnchorPane page = (AnchorPane) FXMLLoader.load(Peaklass.class.getResource("aken.fxml"));
-                Scene scene = new Scene(page);
-                primaryStage.setScene(scene);
-                primaryStage.setTitle("Mängupõrgu");
-                primaryStage.initStyle(StageStyle.UNDECORATED);
-                primaryStage.show();
-
-
-
-            } catch (Exception ex) {
-                Logger.getLogger(Peaklass.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-
+        Application.launch(Peaklass.class, (java.lang.String[])null);
     }
+
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            AnchorPane page = (AnchorPane) FXMLLoader.load(Peaklass.class.getResource("aken.fxml"));
+            Scene scene = new Scene(page);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Mängupõrgu");
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.show();
+
+
+
+        } catch (Exception ex) {
+            Logger.getLogger(Peaklass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+}
 
 
