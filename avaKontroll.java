@@ -24,7 +24,7 @@ public class avaKontroll implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         kasutajalabel.setText("Mängja 1");
 
-        assert exitnupp != null : "exitnuppu ei ole, kontrolli Controller-klassi;
+        assert exitnupp != null : "exitnuppu ei ole, kontrolli Controller-klassi";
 
 
         exitnupp.setOnAction(event -> System.exit(0));
