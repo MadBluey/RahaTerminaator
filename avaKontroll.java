@@ -10,8 +10,8 @@ import java.util.ResourceBundle;
 
 public class avaKontroll implements Initializable {
 
-    @FXML //  fx:id="myButton"
-    private Button exitnupp; // Value injected by FXMLLoader
+    @FXML //  //fx-id järgi fxml failist imporditud nupud
+    private Button exitnupp; //FXML-loaderist saadud väärtus
     @FXML
     private Button playnupp;
     @FXML
@@ -20,11 +20,11 @@ public class avaKontroll implements Initializable {
     private Label kasutajalabel;
 
 
-    @Override // This method is called by the FXMLLoader when initialization is complete
+    @Override // meetod kutsutakse FXMLLoaderi poolt
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         kasutajalabel.setText("Mängja 1");
 
-        assert exitnupp != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+        assert exitnupp != null : "exitnuppu ei ole, kontrolli Controller-klassi"";
 
 
         exitnupp.setOnAction(event -> System.exit(0));
@@ -32,7 +32,7 @@ public class avaKontroll implements Initializable {
             System.exit(0);
         }});
 
-        assert playnupp != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+        assert playnupp != null : "playnuppu ei ole, kontrolli Controller-klassi"";
 
 
         playnupp.setOnAction(event -> showstageLoosiaken.showStage()); //kasutaja.setText("Jaanus");
@@ -40,7 +40,7 @@ public class avaKontroll implements Initializable {
         playnupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { //Enter viib mängima
             showstageLoosiaken.showStage();
         }});
-        assert lisarahanupp != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+        assert lisarahanupp != null : "nuppu ei ole, kontrolli Controller-klassi"";
         lisarahanupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.L) { //L täht
             showstageraha.showStage();
         }});
