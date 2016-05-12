@@ -40,7 +40,7 @@ public class avaKontroll implements Initializable {
         playnupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { //Enter viib mängima
             showstageLoosiaken.showStage();
         }});
-        assert lisarahanupp != null : "nuppu ei ole, kontrolli Controller-klassi;
+        assert lisarahanupp != null : "nuppu ei ole, kontrolli Controller-klassi";
         lisarahanupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.L) { //L täht
             showstageraha.showStage();
         }});
