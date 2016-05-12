@@ -1,20 +1,24 @@
-
+/**
+ * Created by OveLiis on 26/04/2016.
+ */
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-//kontrollklass raha lisamise aknale
-public class LisaRahaKontroll extends avaKontroll implements Initializable {
+
+public class LisaRahaKontroll
+        extends avaKontroll implements Initializable {
 
     @FXML
     private Button lisarahanupp;
@@ -47,18 +51,23 @@ public class LisaRahaKontroll extends avaKontroll implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)  {
         olemasraha.setText(String.valueOf(Peaklass.getA().getRaha()));
 
-        assert lisarahanupp != null : "lisarahanuppu ei ole, kontrolli Controller-klassi";
+        assert lisarahanupp != null : "nuppu ei ole, kontrolli controller-klassi";
 
-        
+        //kui kõik muutujad on sisestatud:
         try{failistLugemine();} catch(Exception e){ KKSõnum.setText("Toimus viga andmete sisse lugemisel, vabandame.");}
-
-        lisarahanupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) {
-           meetod();
-        }});
-
-
         lisarahanupp.setOnAction(event -> { //Kui vajutatakse nupule, luuakse uus LisaRaha.
-            meetod();
+                    try {
+                        a = new LisaRaha(Long.parseLong(krediit1.getText()+krediit2.getText()+krediit3.getText()+krediit4.getText()),
+                                omanikunimi.getText(),
+                                Integer.parseInt(CVV.getText()),
+                                aegumisAasta.getText() + " " + aegumisKuu.getText(),
+                                Double.parseDouble(rahakogus.getText()),
+                                Peaklass.getA());
+                        KKSõnum.setText(a.getSõnum()); //Sõnum LisaRahast.
+                        olemasraha.setText(String.valueOf(Peaklass.getA().getRaha())); //Raha olek.
+                    } catch (IOException e) {
+                        KKSõnum.setText("Toimus viga andmete sisestusel. Palun proovige uuesti.");
+                    }
         });
     }
 
@@ -93,22 +102,6 @@ public class LisaRahaKontroll extends avaKontroll implements Initializable {
             aegumisKuu.setText(kuupäev4.substring(5,7));
 
         }
-    }
-
-    public void meetod(){
-        try {
-            a = new LisaRaha(Long.parseLong(krediit1.getText()+krediit2.getText()+krediit3.getText()+krediit4.getText()),
-                    omanikunimi.getText(),
-                    Integer.parseInt(CVV.getText()),
-                    aegumisAasta.getText() + " " + aegumisKuu.getText(),
-                    Double.parseDouble(rahakogus.getText()),
-                    Peaklass.getA());
-            KKSõnum.setText(a.getSõnum()); //Sõnum LisaRahast.
-            olemasraha.setText(String.valueOf(Peaklass.getA().getRaha())); //Raha olek.
-        } catch (IOException e) {
-            KKSõnum.setText("Toimus viga andmete sisestusel. Palun proovige uuesti.");
-        }
-
-    }
+}
 }
 
