@@ -47,13 +47,13 @@ public class lisarahaKontroll
 
 
     LisaRaha a;
-    @Override // This method is called by the FXMLLoader when initialization is complete
+    @Override 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)  {
         olemasraha.setText(String.valueOf(Peaklass.getA().getRaha()));
 
-        assert lisarahanupp != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+        assert lisarahanupp != null : "nuppu ei ole, kontrolli controller-klassi";
 
-        // initialize your logic here: all @FXML variables will have been injected
+        //kui kõik muutujad on sisestatud:
         try{failistLugemine();} catch(Exception e){ KKSõnum.setText("Toimus viga andmete sisse lugemisel, vabandame.");}
         lisarahanupp.setOnAction(event -> { //Kui vajutatakse nupule, luuakse uus LisaRaha.
                     try {
