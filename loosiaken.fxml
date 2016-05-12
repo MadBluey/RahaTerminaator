@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="405.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.65"
-            fx:controller="loosiaknaKontroll">
+            fx:controller="LoosiaknaKontroll">
     <children>
         <SplitPane dividerPositions="0.9301745635910225" layoutX="63.0" layoutY="187.0" orientation="VERTICAL"
                    prefHeight="403.0" prefWidth="725.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"

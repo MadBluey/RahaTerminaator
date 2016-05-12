@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="502.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/8.0.65"
-            fx:controller="avaKontroll">
+            fx:controller="AvaKontroll">
     <children>
         <Separator layoutX="-4.0" layoutY="466.0" prefHeight="0.0" prefWidth="600.0" AnchorPane.leftAnchor="-4.0"
                    AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="466.0"/>
