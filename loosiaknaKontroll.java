@@ -15,8 +15,8 @@ import java.util.ResourceBundle;
 public class loosiaknaKontroll
         extends avaKontroll implements Initializable {
 
-    @FXML //  fx:id="myButton"
-    private Button terminaator; // Value injected by FXMLLoader
+    @FXML //  dx:id järgi nupud
+    private Button terminaator; // väärtus FXML-st
     @FXML
     private Label rahalabelloosis;
     @FXML
@@ -34,7 +34,7 @@ public class loosiaknaKontroll
     @FXML
     private javafx.scene.control.Button loosiexitnupp;
 
-    @Override // This method is called by the FXMLLoader when initialization is complete
+    @Override 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         rahalabelloosis.setText(String.valueOf(Peaklass.getA().getRaha()));
         kasutajalabelloosis.setText("Mängja 1");
@@ -45,7 +45,7 @@ public class loosiaknaKontroll
                 Peaklass.getA().setPanus(Integer.parseInt(radioGrupp.getSelectedToggle().toString().split("'")[1]));
             }
 
-            assert terminaator != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
+            assert terminaator != null : "nuppu ei ole, kontrolli controller-klassi";
             //terminaator.setDefaultButton(true);
 
             terminaator.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { //Enter viib mängima
@@ -61,9 +61,8 @@ public class loosiaknaKontroll
 
     @FXML
     private void väljuloosist() {
-        // get a handle to the stage
+        // toon endale stage
         Stage stage = (Stage) loosiexitnupp.getScene().getWindow();
-        // do what you have to do
         stage.close();
     }
 
