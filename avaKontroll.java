@@ -24,7 +24,7 @@ public class avaKontroll implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         kasutajalabel.setText("Mängja 1");
 
-        assert exitnupp != null : "exitnuppu ei ole, kontrolli Controller-klassi"";
+        assert exitnupp != null : "exitnuppu ei ole, kontrolli Controller-klassi;
 
 
         exitnupp.setOnAction(event -> System.exit(0));
@@ -32,7 +32,7 @@ public class avaKontroll implements Initializable {
             System.exit(0);
         }});
 
-        assert playnupp != null : "playnuppu ei ole, kontrolli Controller-klassi"";
+        assert playnupp != null : "playnuppu ei ole, kontrolli Controller-klassi";
 
 
         playnupp.setOnAction(event -> showstageLoosiaken.showStage()); //kasutaja.setText("Jaanus");
@@ -40,7 +40,7 @@ public class avaKontroll implements Initializable {
         playnupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { //Enter viib mängima
             showstageLoosiaken.showStage();
         }});
-        assert lisarahanupp != null : "nuppu ei ole, kontrolli Controller-klassi"";
+        assert lisarahanupp != null : "nuppu ei ole, kontrolli Controller-klassi;
         lisarahanupp.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.L) { //L täht
             showstageraha.showStage();
         }});
